@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>is it a game?</title>
+<script type="text/javascript" src="gol.js"></script>
+<script type="text/javascript" src="genesis.js"></script>
+<script type="text/javascript" src="canvas_renderer.js"></script>
+<script type="text/javascript" src="game_clock.js"></script>
+</head>
+<body>
+  <div id="gol"></div>
+  <script type="text/javascript">
+    window.onload = function() {
+      var b = new Board(80);
+      var g = new Genesis();
+      var r = new CanvasRenderer();
+      var gc = new GameClock();
+      b = g.reset(b);
+      r.canvas.height = 1100;
+      r.canvas.width = 1100;
+      r.render(b);
+      document.getElementById('gol').appendChild(r.canvas);
+      function tick() {
+        b = gc.tick(b);
+        r.render(b);
+      }
+      setInterval(tick, 200);
+
+    };
+
+  </script>
+</body>
+</html>
